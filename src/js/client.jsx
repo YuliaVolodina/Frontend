@@ -8,15 +8,16 @@ import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import Settings from "./pages/Settings";
 
-const app = document.getElementById('app');
+const app = document.getElementById("app");
 
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={Layout}>
-      <IndexRoute component={Home}></IndexRoute>
-      <Route path="problems" name="problems" component={Problems}></Route>
-      <Route path="settings" name="settings" component={Settings}></Route>
-      <Route path="help" name="help" component={Help}></Route>
+      <IndexRoute component={Home} />
+      <Route path="problems" name="problems" component={Problems} />
+      <Route path="settings" name="settings" component={Settings} />
+      <Route path="help" name="help" component={Help} />
     </Route>
   </Router>,
-app);
+  app
+);

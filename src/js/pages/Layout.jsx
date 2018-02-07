@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import PropTypes from "prop-types";
 
 import Footer from "../components/layout/Footer";
 import Nav from "../components/layout/Nav";
@@ -10,15 +10,15 @@ export default class Layout extends React.Component {
     const containerStyle = {
       marginTop: "60px"
     };
-    console.log("layout");
+
     return (
       <div>
 
         <Nav location={location} />
 
-        <div class="container" style={containerStyle}>
-          <div class="row">
-            <div class="col-lg-12">
+        <div className="container" style={containerStyle}>
+          <div className="row">
+            <div className="col-lg-12">
 
               {this.props.children}
 
@@ -31,3 +31,16 @@ export default class Layout extends React.Component {
     );
   }
 }
+
+Layout.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }),
+  children: PropTypes.node,
+};
+
+Layout.defaultProps = {
+  location: {
+    pathname: "",
+  },
+};

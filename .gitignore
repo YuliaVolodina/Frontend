@@ -59,3 +59,9 @@ typings/
 
 #IDE
 .idea/
+
+# Random files that show up from time to time
+.DS_Store
+
+client.min.js
+
