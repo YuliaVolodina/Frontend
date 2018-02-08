@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
 
-import Problems from "./pages/Problems";
-import Help from "./pages/Help";
-import Home from "./pages/Home";
-import Layout from "./pages/Layout";
-import Settings from "./pages/Settings";
+import Problems from "./pages/Problems.jsx";
+import Help from "./pages/Help.jsx";
+import Home from "./pages/Home.jsx";
+import Layout from "./pages/Layout.jsx";
+import Settings from "./pages/Settings.jsx";
 
 const app = document.getElementById("app");
 
