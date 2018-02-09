@@ -1,6 +1,6 @@
 FROM node:7.8.0
 
-COPY . /code/
+ADD . /code/
 WORKDIR /code/
 
 RUN npm install
