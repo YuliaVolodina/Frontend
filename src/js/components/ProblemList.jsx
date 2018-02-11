@@ -5,11 +5,23 @@ export default class ProblemList extends React.Component{
 
     render() {
         const{ problem } = this.props;
-        const diffRatingChanged = (newRating, problemID, userID) => {
-            console.log(newRating, problemID, userID)
+
+        const  getDiffRating = (problemID) => {
+            //go get current rating from backend with problem id
+            //return (problemID + 1)
         }
-        const revRatingChanged = (newRating, problemID, userID) => {
-            console.log(newRating, problemID, userID)
+        const  getRevRating = (problemID) => {
+            //go get current rating from backend with problem id
+            //return (problemID - 1)
+        }
+
+        const setDiffRating = (newRating) => {
+            //update value in backend with new rating, problem id and user id
+            //window.alert(newRating)
+        }
+        const setRevRating = (newRating) => {
+            //update value in backend, this does in fact work
+            //window.alert(newRating)
         }
         return (
             <div class="col-md-4">
@@ -19,9 +31,9 @@ export default class ProblemList extends React.Component{
                     {problem.description} <br/>
                 </p>
                 <p id = "diff">difficulty: </p>
-                <ReactStars count={5} onChange = {diffRatingChanged()} size={24} color2={'#fffe2b'}/>
+                <ReactStars count={5} value={getDiffRating(problem.id)} onChange = {setDiffRating} size={24} color2={'#fffe2b'}/>
                 <p id = "rev">reviews: </p>
-                <ReactStars count={5} onChange = {revRatingChanged()} size={24} color2={'#fffe2b'}/>
+                <ReactStars count={5} value={getRevRating(problem.id)} onChange = {setRevRating} size={24} color2={'#fffe2b'}/>
                 <a class="btn btn-default" href="#">Solve</a>
             </div>
         );
