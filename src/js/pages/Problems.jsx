@@ -12,21 +12,25 @@ export default class Problems extends React.Component {
         const Problems = [
             {
                 name: "merge sort",
+                author: "Billy Joel",
                 description: "its fast"
             },
             {
                 name: "quick sort",
+                author: "Scooby Doo",
                 description: "its quick"
             },
             {
                 name: "radix sort",
+                author: "X",
                 description: "its rad"
             },
             {
                 name: "insertion sort",
+                author: "Y",
                 description: "its slow"
             }
-        ].map((problem, i) => <List key={i} problem={problem.name}/> );
+        ].map((problem, i) => <List key={i} problem={problem}/> );
 
         return (
             <div>
