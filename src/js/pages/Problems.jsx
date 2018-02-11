@@ -4,18 +4,20 @@ export default class Problems extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: "Please write codes"
+            title: "Please enter the title of the problem",
+			problem: "Please write your problem"
         };
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        this.setState({title: event.target.title});
+		 this.setState({problem: event.target.problem});
     }
 
     handleSubmit(event) {
-        alert("A solution code has been submitted: " + this.state.value);
+        alert("Your problem \"" +  this.state.title + "\" has been created");
         event.preventDefault();
     }
 
@@ -24,11 +26,14 @@ export default class Problems extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <h1>Problems</h1>
-                </div>
-                <textarea value={this.state.value} onChange={this.handleChange}/>
-                <input type="submit" value="Submit" />
+                </div>		
+                <textarea value={this.state.title} onChange={this.handleChange}/>
+				<textarea value={this.state.problem} onChange={this.handleChange}/>
+                <input type="submit" class = "btn btn-success" value="Submit" />
             </form>
 
         );
     }
 }
+
+
