@@ -1,39 +1,56 @@
 import React from "react";
 
+import List from "../components/ProblemList.js";
+
 export default class Problems extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: "Please enter the title of the problem",
-			problem: "Please write your problem"
-        };
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-
-    handleChange(event) {
-        this.setState({title: event.target.title});
-		 this.setState({problem: event.target.problem});
-    }
-
-    handleSubmit(event) {
-        alert("Your problem \"" +  this.state.title + "\" has been created");
-        event.preventDefault();
-    }
-
     render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <h1>Problems</h1>
-                </div>		
-                <textarea value={this.state.title} onChange={this.handleChange}/>
-				<textarea value={this.state.problem} onChange={this.handleChange}/>
-                <input type="submit" class = "btn btn-success" value="Submit" />
-            </form>
+        const { query } = this.props.location;
+        const { params } = this.props;
 
+
+        const Problems = [
+            {
+                name: "Question1",
+                author: "Charles",
+                description: "How to get 100% without studying.",
+                difficulty: null,
+                good: null,
+                id: 1
+            },
+            {
+                name: "Question2",
+                author: "Justin",
+                description: "How to cheat your girlfriend without geting caught.",
+                difficulty: null,
+                good: null,
+                id: 2
+            },
+            {
+                name: "Question3",
+                author: "Gabriel",
+                description: "How to write code without typing.",
+                difficulty: null,
+                good: null,
+                id: 3
+            },
+            {
+                name: "Question4",
+                author: "Guillaume",
+                description: "No code!",
+                difficulty: null,
+                good: null,
+                id :4
+            }
+        ].map((problem, i) => <List key={i} problem={problem}/> );
+
+        return (
+            <div>
+                <h1>Problems</h1>
+				<div class="well text-center">
+				<h2>Problems List</h2>
+				</div>
+                <div class="row">{Problems}</div>
+            </div>
         );
     }
 }
-
-
