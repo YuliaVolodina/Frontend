@@ -27,8 +27,8 @@ export default class Problems extends React.Component {
                 <div>
                     <h1>Problems</h1>
                 </div>		
-                <textarea value={this.state.title} onChange={this.handleChange}/>
-				<textarea value={this.state.problem} onChange={this.handleChange}/>
+                <p><input type="text" value={this.state.title} onChange={this.handleChange}/></p>
+				<p><textarea value={this.state.problem} onChange={this.handleChange}/></p>
                 <input type="submit" class = "btn btn-success" value="Submit" />
             </form>
 
