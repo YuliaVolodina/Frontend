@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { IndexLink, Link } from "react-router";
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -39,7 +40,7 @@ export default class Problems extends React.Component {
         const { params } = this.props;
         const { article } = params;
         const { date, filter } = query;
-
+        const createProblemClass = location.pathname.match(/^\/createProblem/) ? "active" : "";
 
         // const Problems = [
         //     {
@@ -81,6 +82,9 @@ export default class Problems extends React.Component {
             <div>
                 <h1>Problems</h1>
                 <div class="row">{this.state.Problems}</div>
+                <a  className={createProblemClass}>
+                    <Link class="btn btn-default" to="createProblem">"Add Problem"</Link>
+                </a>
             </div>
         );
     }
