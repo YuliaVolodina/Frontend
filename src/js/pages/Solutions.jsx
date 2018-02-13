@@ -1,14 +1,12 @@
 import React from "react"
+import Textarea from "react-textarea-autosize";
 
 export default class Solutions extends React.Component {
-    problem = this.props;
     render() {
-
-        return(
+        return (
             <div>
-                <h1>{this.problem.name}</h1>
-                <p>{this.problem.description}</p>
-
+                <p>Enter solution in the box below</p>
+                <Textarea style = {{width:900, height: 300}}/>
             </div>
         );
     }
