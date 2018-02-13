@@ -30,6 +30,7 @@
     "react-dom": "^0.14.6",
     "react-router": "^1.0.3",
     "react-stars": "^2.2.5",
+    "react-textarea-autosize": "^5.2.1",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.1"
   },
