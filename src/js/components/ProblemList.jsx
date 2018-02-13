@@ -41,7 +41,7 @@ export default class ProblemList extends React.Component{
                 <ReactStars count={5} value={getRevRating(problem.id)} onChange = {setRevRating} size={24} color2={'#fffe2b'}/>
                 {/*<a class="btn btn-default" to="solutionsClass">Solve</a>*/}
                 <a  className={solutionsClass}>
-                    <Link class="btn btn-default" to="solutions">Solve</Link>
+                    <Link class="btn btn-default" to={{pathname: '/solutions', state:{ testvalue: problem}}}  >Solve</Link>
                 </a>
             </div>
         );
