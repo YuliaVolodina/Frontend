@@ -8,7 +8,7 @@ import Home from "./pages/Home.jsx";
 import Layout from "./pages/Layout.jsx";
 import Settings from "./pages/Settings.jsx";
 import Solutions from "./pages/Solutions.jsx";
-
+import CreateProblem from "./pages/CreateProblem.jsx";
 const app = document.getElementById("app");
 
 ReactDOM.render(
@@ -19,6 +19,7 @@ ReactDOM.render(
       <Route path="settings" name="settings" component={Settings} />
       <Route path="help" name="help" component={Help} />
         <Route path="solutions(/:testvalue)" name="solutions" component={Solutions}/>
+        <Route path="createProblem" name="createProblem" component={CreateProblem}/>
     </Route>
   </Router>,
   app

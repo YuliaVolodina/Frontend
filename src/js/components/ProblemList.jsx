@@ -36,9 +36,9 @@ export default class ProblemList extends React.Component{
                     {problem.description} <br/>
                 </p>
                 <p id = "diff">difficulty: </p>
-                <ReactStars count={5} value={getDiffRating(problem.id)} onChange = {setDiffRating} size={24} color2={'#fffe2b'}/>
+                <ReactStars count={5} value={getDiffRating(problem.id)} onChange = {setDiffRating} size={24} half={false} color2={'#fffe2b'}/>
                 <p id = "rev">reviews: </p>
-                <ReactStars count={5} value={getRevRating(problem.id)} onChange = {setRevRating} size={24} color2={'#fffe2b'}/>
+                <ReactStars count={5} value={getRevRating(problem.id)} onChange = {setRevRating} size={24} half={false} color2={'#fffe2b'}/>
                 {/*<a class="btn btn-default" to="solutionsClass">Solve</a>*/}
                 <a  className={solutionsClass}>
                     <Link class="btn btn-default" to={{pathname: '/solutions', state:{ testvalue: problem}}}  >Solve</Link>
