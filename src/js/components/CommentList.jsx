@@ -7,6 +7,7 @@ export default class CommentList extends React.Component {
     }
     render() {
         return (
+
             <ReactDisqusComments
                 shortname="example"
                 identifier="something-unique-12345"

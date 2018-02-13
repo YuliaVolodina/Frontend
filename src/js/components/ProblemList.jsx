@@ -1,5 +1,7 @@
 import React from "react"
 import ReactStars from "react-stars"
+import { IndexLink, Link } from "react-router";
+
 
 export default class ProblemList extends React.Component{
 
@@ -23,6 +25,9 @@ export default class ProblemList extends React.Component{
             //update value in backend, this does in fact work
             //window.alert(newRating)
         }
+
+        const solutionsClass = location.pathname.match(/^\/solutions/) ? "active" : "";
+
         return (
             <div class="col-md-4">
                 <h4>{problem.name}</h4>
@@ -34,7 +39,10 @@ export default class ProblemList extends React.Component{
                 <ReactStars count={5} value={getDiffRating(problem.id)} onChange = {setDiffRating} size={24} color2={'#fffe2b'}/>
                 <p id = "rev">reviews: </p>
                 <ReactStars count={5} value={getRevRating(problem.id)} onChange = {setRevRating} size={24} color2={'#fffe2b'}/>
-                <a class="btn btn-default" href="#">Solve</a>
+                {/*<a class="btn btn-default" to="solutionsClass">Solve</a>*/}
+                <a  className={solutionsClass}>
+                    <Link class="btn btn-default" to="solutions">Solve</Link>
+                </a>
             </div>
         );
     }

@@ -2,8 +2,7 @@ import React from "react"
 
 export default class Solutions extends React.Component {
     problem = this.props;
-    react() {
-
+    render() {
 
         return(
             <div>

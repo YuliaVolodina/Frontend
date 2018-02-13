@@ -7,6 +7,7 @@ import Help from "./pages/Help.jsx";
 import Home from "./pages/Home.jsx";
 import Layout from "./pages/Layout.jsx";
 import Settings from "./pages/Settings.jsx";
+import Solutions from "./pages/Solutions.jsx";
 
 const app = document.getElementById("app");
 
@@ -17,6 +18,7 @@ ReactDOM.render(
       <Route path="problems" name="problems" component={Problems} />
       <Route path="settings" name="settings" component={Settings} />
       <Route path="help" name="help" component={Help} />
+        <Route path="solutions" name="solutions" component={Solutions}/>
     </Route>
   </Router>,
   app

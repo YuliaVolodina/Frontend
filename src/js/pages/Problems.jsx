@@ -8,8 +8,15 @@ import List from "../components/ProblemList.jsx";
 
 export default class Problems extends React.Component {
     state = {
-        Problems: []
-    }
+        Problems: [{
+            name: "ass",
+            author: "fast",
+            description: "sk8",
+            difficulty: null,
+            good: null,
+            id: 1
+        }].map((problem, i) => <List key={i} problem={problem}/> )
+    };
 
     componentDidMount() {
         axios.get("http://localhost:8000/restapi/problems/")
