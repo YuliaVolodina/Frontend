@@ -45,4 +45,11 @@ Now with all that setup running the frontend is done in a single command:
 docker-compose up
 ```
 
+Docker is being difficult
+
+```
+npm install
+npm run dev
+```
+
 The frontend should now be running at the address shown.
