@@ -26,6 +26,7 @@
     "jest": "^22.2.1",
     "prop-types": "^15.6.0",
     "react": "^0.14.6",
+    "react-disqus-comments": "^1.1.1",
     "react-dom": "^0.14.6",
     "react-router": "^1.0.3",
     "react-stars": "^2.2.5",
