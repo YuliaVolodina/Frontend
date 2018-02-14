@@ -19,7 +19,13 @@ export default class Solutions extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
+        if (this.state.value == ""){
+            alert("Please enter a value");
+
+        }else {
+            alert(this.state.value);
+            //backend code
+        }
         event.preventDefault();
     }
 
