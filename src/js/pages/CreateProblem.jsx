@@ -29,8 +29,9 @@ export default class CreateProblems extends React.Component {
         return(
             <div>
 			<form>
-                <p>Enter your problem in the box below</p>
+                <p>Enter the title of the problem in the box below</p>
 				<p><input type="text"  onChange={this.handleChange}/></p>
+				<p>Enter your problem in the box below</p>
                 <p><Textarea style = {{width:300, height: 300}} /></p>
 				<a class="btn btn-success" onClick={this.handleSubmit}>Submit</a>
                 <h1>{this.problem.name}</h1>
