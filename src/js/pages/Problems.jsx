@@ -36,6 +36,7 @@ export default class Problems extends React.Component {
     }
 
     render() {
+
         const { query } = this.props.location;
         const { params } = this.props;
         const { article } = params;
@@ -82,8 +83,9 @@ export default class Problems extends React.Component {
             <div>
                 <h1>Problems</h1>
                 <div class="row">{this.state.Problems}</div>
-                <a  className={createProblemClass}>
-                    <Link class="btn btn-success" to="createProblem">Add Problem</Link>
+                <a style={{align: "top-right"}} className={createProblemClass}>
+                    <Link  class="btn btn-default"  to={{pathname: '/createProblem', state:{ testvalue: params}}} >Do you want to create problems?</Link>
+
                 </a>
             </div>
         );
