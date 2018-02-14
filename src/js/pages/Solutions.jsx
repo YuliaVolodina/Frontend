@@ -16,13 +16,10 @@ export default class Solutions extends React.Component {
 
     handleChange(event) {
         this.setState({value: event.target.value});
-        console.log(this.state);
     }
 
     handleSubmit(event) {
-        console.log("hello");
         alert('A name was submitted: ' + this.state.value);
-        console.log(this.state.value);
         event.preventDefault();
     }
 
