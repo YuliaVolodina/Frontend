@@ -12,8 +12,8 @@ export default class ProblemList extends React.Component{
         super();
         this.state = {
             showModal: false,
-            value:'',
-            rating: ''
+            value:"",
+            rating: ""
         };
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -32,21 +32,17 @@ export default class ProblemList extends React.Component{
     }
     handleChange(event) {
         this.setState({value: event.target.value});
-        console.log(this.state);
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
-        console.log(this.state);
         event.preventDefault();
         this.handleCloseModal();
         //insert backend call here
-        this.state.value = '';
+        this.setState({value: ""});
     }
 
     handleRating(event){
         this.setState({rating: event});
-        console.log(this.state.rating);
         this.handleOpenModal();
 
     }
@@ -63,7 +59,6 @@ export default class ProblemList extends React.Component{
      setDiffRating(newRating){
         //update value in backend with new rating, problem id and user id
         //window.alert(newRating)
-        console.log(newRating);
     }
 
 
@@ -73,27 +68,27 @@ export default class ProblemList extends React.Component{
         const solutionsClass = location.pathname.match(/^\/solutions/) ? "active" : "";
 
         return (
-            <div class="col-md-4">
+            <div className="col-md-4">
                 <h4>{problem.name}</h4>
                 <p>
                     by: {problem.author} <br/>
                     {problem.description} <br/>
                 </p>
                 <p id = "diff">difficulty: </p>
-                <ReactStars count={5} value={this.getDiffRating(problem.id)} onChange = {this.setDiffRating} size={24} half={false} color2={'#fffe2b'}/>
+                <ReactStars count={5} value={this.getDiffRating(problem.id)} onChange = {this.setDiffRating} size={24} half={false} color2={"#fffe2b"}/>
                 <p id = "rev">reviews: </p>
-                <ReactStars count={5} value={this.getRevRating(problem.id)} onChange = {this.handleRating} size={24} half={false} color2={'#fffe2b'}/>
+                <ReactStars count={5} value={this.getRevRating(problem.id)} onChange = {this.handleRating} size={24} half={false} color2={"#fffe2b"}/>
                 <a  className={solutionsClass}>
-                    <Link class="btn btn-success" to={{pathname: '/solutions', state:{ testvalue: problem}}}  >Solve</Link>
+                    <Link className="btn btn-success" to={{pathname: "/solutions", state:{ testvalue: problem}}}  >Solve</Link>
                 </a>
                 <ReactModal
                     style={{
                         overlay:{
-                            left: '25%',
-                            right: '25%',
-                            top: '90px',
-                            height: '600px',
-                            width: '600px'
+                            left: "25%",
+                            right: "25%",
+                            top: "90px",
+                            height: "600px",
+                            width: "600px"
                         }
                     }}
                     isOpen={this.state.showModal}
