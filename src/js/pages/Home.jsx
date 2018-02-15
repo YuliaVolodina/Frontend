@@ -1,22 +1,23 @@
 import React from "react";
 
- function confirmBox(){
-  	var text;
-  	if (confirm("Logged in with GitHub!")) {
-  		text = "Cool";
-  	} else {
-  		text = "not cool";
-  	}
-  }
 
 export default class Home extends React.Component {
+
+    confirmBox(event) {
+        alert("Logged in with GitHub!")
+    }
+    constructor(props) {
+        super(props);
+
+        this.confirmBox = this.confirmBox.bind(this);
+    }
   render() {
     return (
       <div>
         <h1>
         	Home
         </h1>
-        <button onClick={confirmBox()}>
+        <button onClick={this.confirmBox}>
         	Log in with Github
         </button>
       </div>
