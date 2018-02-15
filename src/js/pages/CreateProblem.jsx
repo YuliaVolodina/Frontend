@@ -54,30 +54,17 @@ export default class CreateProblem extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log("hello");
-        alert('A name done: ' + this.state.field1);
-        alert('A thing : ' + this.state.field2);
-        alert('A name was submitted: ' + this.state.field3);
-        alert('A name was submitted: ' + this.state.field4);
-        alert('A name was submitted: ' + this.state.field5);
 
         if (this.state.field1 == "" || this.state.field2 == "" || this.state.field3 == "" || this.state.field4 == "" || this.state.field5 == "") {
-            alert("Please enter something!!!!")
+            alert("Please Fill All Fields")
         } else {
-            console.log(this.state.field1);
-
-            console.log(this.state.field2);
-            console.log(this.state.field3);
-            console.log(this.state.field4);
-            console.log(this.state.field5);
             event.preventDefault();
             //This is where the backend comes in...
+            alert(this.state.field3);
         }
     }
         render()
         {
-
-
             console.log(this.problem);
 
             return (
