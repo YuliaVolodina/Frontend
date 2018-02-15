@@ -29,6 +29,9 @@ export default class ProblemList extends React.Component{
 
     handleCloseModal () {
         this.setState({ showModal: false });
+        this.setState({value: ""});
+        //insert backend code
+
     }
     handleChange(event) {
         this.setState({value: event.target.value});
@@ -94,7 +97,7 @@ export default class ProblemList extends React.Component{
                     isOpen={this.state.showModal}
                     contentLabel="Minimal Modal Example">
                     <button onClick={this.handleCloseModal}>Close</button>
-                    <h1>Leave a comment</h1>
+                    <h1>Leave a comment (optional)</h1>
                     <Textarea style = {{width:400, height: 300}} onChange={this.handleChange}/>
                     <a className="btn -btn-default" onClick={this.handleSubmit}>Submit</a>
                 </ReactModal>
