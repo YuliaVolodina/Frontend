@@ -1,5 +1,6 @@
 import React from "react"
 import Textarea from "react-textarea-autosize"
+import axios from "axios/index";
 
 export default class CreateProblem extends React.Component {
     problem = this.props;
@@ -59,7 +60,23 @@ export default class CreateProblem extends React.Component {
             alert("Please Fill All Fields")
         } else {
             event.preventDefault();
-            //This is where the backend comes in...
+            var jsonpayload = {
+                "title": this.state.field1,
+                "programming_language": this.state.field2,
+                "difficulty": this.state.field3,
+                "description": this.state.field4,
+                "solution": this.state.field5,
+                "author": "me",
+                "rating": 0
+            }
+            axios.post("http://localhost:80/restapi/problem/", jsonpayload)
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+
             alert(this.state.field3);
         }
     }
