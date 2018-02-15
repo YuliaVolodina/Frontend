@@ -20,7 +20,7 @@ export default class Problems extends React.Component {
     };
 
     componentDidMount() {
-        axios.get("http://localhost:8000/restapi/problems/")
+        axios.get("http://localhost:8000/restapi/problem/")
             .then(response => {
                 console.log(response);
                 const Problems = response.data.map((ent) => {
@@ -34,6 +34,7 @@ export default class Problems extends React.Component {
                 console.log(error);
             })
     }
+
 
     render() {
         const { query } = this.props.location;
@@ -83,7 +84,7 @@ export default class Problems extends React.Component {
                 <h1>Problems</h1>
                 <div class="row">{this.state.Problems}</div>
                 <a  className={createProblemClass}>
-                    <Link class="btn btn-success" to="createProblem">Add Problem</Link>
+                    <Link class="btn btn-success" to="createProblem" >Add Problem</Link>
                 </a>
             </div>
         );
