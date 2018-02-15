@@ -20,7 +20,7 @@ export default class Problems extends React.Component {
     };
 
     componentDidMount() {
-        axios.get("http://localhost:8000/restapi/problems/")
+        axios.get("http://localhost:80/restapi/problem/")
             .then(response => {
                 console.log(response);
                 const Problems = response.data.map((ent) => {
