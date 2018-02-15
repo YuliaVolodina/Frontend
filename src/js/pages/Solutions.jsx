@@ -37,7 +37,6 @@ export default class Solutions extends React.Component {
     }
 
     render() {
-        const {id} = "fail"
         return(
             <div>
               <h1>{this.problem.name}</h1>

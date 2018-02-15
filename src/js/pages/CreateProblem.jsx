@@ -59,6 +59,7 @@ export default class CreateProblem extends React.Component {
         if (this.state.field1 == "" || this.state.field2 == "" || this.state.field3 == "" || this.state.field4 == "" || this.state.field5 == "") {
             alert("Please Fill All Fields")
         } else {
+            alert("Problem has been created")
             event.preventDefault();
             var jsonpayload = {
                 "title": this.state.field1,
@@ -77,7 +78,7 @@ export default class CreateProblem extends React.Component {
                     console.log(error);
                 })
 
-            alert(this.state.field3);
+            //alert(this.state.field3);
         }
     }
         render()
