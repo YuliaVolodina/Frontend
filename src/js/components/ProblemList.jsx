@@ -4,8 +4,6 @@ import { Link } from "react-router";
 import ReactModal from "react-modal";
 import Textarea from "react-textarea-autosize";
 
-
-
 export default class ProblemList extends React.Component{
 
     constructor () {
@@ -47,23 +45,21 @@ export default class ProblemList extends React.Component{
     handleRating(event){
         this.setState({rating: event});
         this.handleOpenModal();
-
     }
 
-      getDiffRating(problemID){
+    getDiffRating(problemID){
         //go get current rating from backend with problem id
         //return (problemID + 1)
     }
-      getRevRating(problemID){
+    getRevRating(problemID){
         //go get current rating from backend with problem id
         //return (problemID - 1)
     }
 
-     setDiffRating(newRating){
+    setDiffRating(newRating){
         //update value in backend with new rating, problem id and user id
         //window.alert(newRating)
     }
-
 
     render() {
         const{ problem } = this.props;

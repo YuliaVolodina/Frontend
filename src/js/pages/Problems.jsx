@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { IndexLink, Link } from "react-router";
+import ReactModal from "react-modal"
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -8,7 +9,10 @@ axios.defaults.xsrfCookieName = "csrftoken";
 import List from "../components/ProblemList.jsx";
 
 export default class Problems extends React.Component {
+    login = this.props.location.state.login;
+
     state = {
+        showModal: false,
         Problems: [{
             name: "Problem1",
             author: "Bob",
@@ -18,6 +22,15 @@ export default class Problems extends React.Component {
             id: 1
         }].map((problem, i) => <List key={i} problem={problem}/> )
     };
+
+    loginCheck() {
+        if(this.login == false) {
+            alert("false");
+            return
+        }
+        alert("true");
+    }
+
 
     componentDidMount() {
         axios.get("http://localhost:80/restapi/problem/")
@@ -36,48 +49,12 @@ export default class Problems extends React.Component {
     }
 
     render() {
-
+        //this.loginCheck();
         const { query } = this.props.location;
         const { params } = this.props;
         const { article } = params;
         const { date, filter } = query;
         const createProblemClass = location.pathname.match(/^\/createProblem/) ? "active" : "";
-
-        // const Problems = [
-        //     {
-        //         name: "merge sort",
-        //         author: "Billy Joel",
-        //         description: "its fast",
-        //         difficulty: null,
-        //         good: null,
-        //         id: 1
-        //     },
-        //     {
-        //         name: "quick sort",
-        //         author: "Scooby Doo",
-        //         description: "its quick",
-        //         difficulty: null,
-        //         good: null,
-        //         id: 2
-        //     },
-        //     {
-        //         name: "radix sort",
-        //         author: "X",
-        //         description: "its rad",
-        //         difficulty: null,
-        //         good: null,
-        //         id: 3
-        //     },
-        //     {
-        //         name: "insertion sort",
-        //         author: "Y",
-        //         description: "its slow",
-        //         difficulty: null,
-        //         good: null,
-        //         id :4
-        //     }
-        // ].map((problem, i) => <List key={i} problem={problem}/> );
-
 
         return (
             <div>
@@ -86,6 +63,7 @@ export default class Problems extends React.Component {
                 <a style={{align: "top-right"}} className={createProblemClass}>
                     <Link  class="btn btn-default"  to={{pathname: '/createProblem', state:{ testvalue: params}}} >Create New Problem</Link>
                 </a>
+                <button>{this.login.toString()}</button>
             </div>
         );
     }
