@@ -75,7 +75,8 @@ export default class Nav extends React.Component {
     const featuredClass = location.pathname === "/" ? "active" : "";
     const helpClass = location.pathname.match(/^\/help/) ? "active" : "";
     const problemsClass = location.pathname.match(/^\/problems/) ? "active" : "";
-    const settingsClass = location.pathname.match(/^\/settings/) ? "active" : "";
+    const createAccountClass = location.pathname.match(/^\/createAccount/) ? "active" : "";
+	const settingsClass = location.pathname.match(/^\/settings/) ? "active" : "";	
     const navClass = collapsed ? "collapse" : "";
 
     return (
@@ -105,6 +106,9 @@ export default class Nav extends React.Component {
               </li>
             </ul>
             <a className="btn -btn-default" onClick={this.handleOpenModal}>Login</a>
+			<li className={createAccountClass}>
+                <Link to="createAccount" onClick={this.toggleCollapse.bind(this)}>Sign Up</Link>
+              </li>
           </div>
           <div>
             <ReactModal

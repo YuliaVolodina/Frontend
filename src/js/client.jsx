@@ -9,6 +9,7 @@ import Layout from "./pages/Layout.jsx";
 import Settings from "./pages/Settings.jsx";
 import Solutions from "./pages/Solutions.jsx";
 import CreateProblem from "./pages/CreateProblem.jsx";
+import CreateAccount from "./pages/CreateAccount.jsx";
 const app = document.getElementById("app");
 
 ReactDOM.render(
@@ -20,6 +21,7 @@ ReactDOM.render(
       <Route path="help" name="help" component={Help} />
         <Route path="solutions(/:testvalue)" name="solutions" component={Solutions}/>
         <Route path="createProblem(/:testvalue)" name="createProblem" component={CreateProblem}/>
+		<Route path="createAccount(/:testvalue)" name="createAccount" component={CreateAccount}/>
     </Route>
   </Router>,
   app
