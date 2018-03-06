@@ -4,7 +4,7 @@ import { IndexLink, Link } from "react-router";
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
-import Select from 'react-select';
+import Select from "react-select";
 
 import List from "../components/ProblemList.jsx";
 

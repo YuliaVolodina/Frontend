@@ -1,7 +1,7 @@
 import React from "react"
 import ReactStars from "react-stars"
 import { Link } from "react-router";
-import ReactModal from 'react-modal';
+import ReactModal from "react-modal";
 import Textarea from "react-textarea-autosize";
 
 
