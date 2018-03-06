@@ -17,7 +17,8 @@ export default class Problems extends React.Component {
             difficulty: null,
             good: null,
             id: 1
-        }].map((problem, i) => <List key={i} problem={problem}/> )
+        }].map((problem, i) => <List key={i} problem={problem}/> ),
+        selectedOption: '',
     };
 
     componentDidMount() {
@@ -34,6 +35,11 @@ export default class Problems extends React.Component {
             .catch(function (error) {
                 console.log(error);
             })
+    }
+
+    handleChange = (selectedOption) => {
+        this.setState({ selectedOption });
+        console.log(`Selected: ${selectedOption.label}`);
     }
 
     render() {
@@ -71,19 +77,25 @@ export default class Problems extends React.Component {
         return (
             <div>
                 <h1>Problems</h1>
-                <div class="row">{this.state.Problems}</div>
-                <a  className={createProblemClass}>
-                    <Link class="btn btn-success" to="createProblem">Add Problem</Link>
-                </a>
                 <Select
                     name="form-field-name"
                     value={value}
+                    placeholder="Filter by..."
                     onChange={this.handleChange}
                     options={[
                         { value: 'Difficulty', label: 'Difficulty' },
                         { value: 'Rating', label: 'Rating' },
+                        { value: 'New', label: 'New' },
+                        { value: 'Beginner', label: 'Beginner' },
+                        { value: 'Intermediate', label: 'Intermediate' },
+                        { value: 'Expert', label: 'Expert' },
                     ]}
                 />
+                <div class="row">{this.state.Problems}</div>
+                <a  className={createProblemClass}>
+                    <Link class="btn btn-success" to="createProblem">Add Problem</Link>
+                </a>
+
                 <div class="row">{Problems}</div>
             </div>
         );
