@@ -104,11 +104,12 @@ export default class Nav extends React.Component {
               <li className={helpClass}>
                 <Link to="help" onClick={this.toggleCollapse.bind(this)}>Help</Link>
               </li>
-            </ul>
-            <a className="btn -btn-default" onClick={this.handleOpenModal}>Login</a>
-			<li className={createAccountClass}>
+			  <li className={createAccountClass}>
                 <Link to="createAccount" onClick={this.toggleCollapse.bind(this)}>Sign Up</Link>
               </li>
+            </ul>
+            <a className="btn -btn-default" onClick={this.handleOpenModal}>Login</a>
+			
           </div>
           <div>
             <ReactModal
@@ -134,7 +135,7 @@ export default class Nav extends React.Component {
                     </label>
                 </form>
                 <a className="btn -btn-action" onClick={this.handleSubmit}>Submit</a>
-                <a className="btn -btn-action" >Create New Account?</a>
+                <Link to="createAccount" onClick={this.handleCloseModal} >Create New Account?</Link>
             </ReactModal>
           </div>
         </div>
