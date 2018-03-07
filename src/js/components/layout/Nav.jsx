@@ -23,21 +23,13 @@ export default class Nav extends React.Component {
     this.handleOpenCheckModal = this.handleOpenCheckModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCloseCheckModal = this.handleCloseCheckModal.bind(this);
-    this.loginCheck = this.loginCheck.bind(this);
   }
 
   toggleCollapse() {
     const collapsed = !this.state.collapsed;
     this.setState({collapsed});
   }
-  loginCheck() {
-      this.toggleCollapse.bind(this);
-      if (!this.state.isLoggedIn) {
-          this.handleOpenCheckModal();
-      } else {
-          this.handleCloseCheckModal();
-      }
-  }
+
   onSuccessLogin() {
     //display username somewhere
     alert("login successful");
@@ -78,7 +70,6 @@ export default class Nav extends React.Component {
 
   handleOpenCheckModal() {
       const test = this.props.location.pathname.toString();
-      alert(test);
       if(test !== "/problems" && test !== "/settings") {
           this.handleCloseCheckModal();
       } else {
@@ -88,8 +79,7 @@ export default class Nav extends React.Component {
 
   handleCloseModal () {
     this.setState({ showModal: false });
-    alert(this.state.isLoggedIn.toString());
-    alert(this.props.location.pathname.toString());
+
     if(this.props.location.pathname === ("/problems" || "/settings")) {
         if (!this.state.isLoggedIn) {
             this.handleOpenCheckModal();
@@ -125,16 +115,16 @@ export default class Nav extends React.Component {
           <div className={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
               <li className={featuredClass}>
-                <IndexLink to={{pathname: "/", state:{login: this.state.isLoggedIn}}} onClick={this.loginCheck}>Home</IndexLink>
+                <IndexLink to={{pathname: "/", state:{login: this.state.isLoggedIn}}} onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>
               </li>
               <li className={problemsClass}>
-                <Link to={{pathname: "problems", state:{login: this.state.isLoggedIn}}} onClick={this.loginCheck}>Problems</Link>
+                <Link to={{pathname: "problems", state:{login: this.state.isLoggedIn}}} onClick={this.toggleCollapse.bind(this)}>Problems</Link>
               </li>
               <li className={settingsClass}>
-                <Link to={{pathname: "settings", state:{login: this.state.isLoggedIn}}} onClick={this.loginCheck}>Settings</Link>
+                <Link to={{pathname: "settings", state:{login: this.state.isLoggedIn}}} onClick={this.toggleCollapse.bind(this)}>Settings</Link>
               </li>
               <li className={helpClass}>
-                <Link to="help" onClick={this.loginCheck}>Help</Link>
+                <Link to="help" onClick={this.toggleCollapse.bind(this)}>Help</Link>
               </li>
             </ul>
             <a className="btn -btn-default" onClick={this.handleOpenModal}>Login</a>
@@ -175,7 +165,8 @@ export default class Nav extends React.Component {
                       width: "1200px"
                   }
               }}
-              isOpen={this.state.showAlert}
+              isOpen={!this.state.isLoggedIn && !this.state.showModal && (this.props.location.pathname.toString() === ("/problems")
+                    ||this.props.location.pathname.toString() === ("/settings"))}
               contentLabel="Minimal Modal Example">
               <h1>Login plz</h1>
           </ReactModal>
