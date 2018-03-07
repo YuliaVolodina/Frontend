@@ -23,10 +23,19 @@ export default class Nav extends React.Component {
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCloseCheckModal = this.handleCloseCheckModal.bind(this);
     this.logout = this.logout.bind(this);
+
+    this.onUnload = this.onUnload.bind(this);
   }
 
   getInitialState() {
     if(localStorage.getItem( "loginInfo" ))  {
+
+      if(localStorage.getItem("time")) {
+        const time = parseInt(localStorage.getItem("time"))
+        if((new Date().getTime() - time) > 1000*30) {  //1000 ms = 1s, 60s = 1, 60min = 1hour...
+            return false
+        }
+      }
       return localStorage.getItem("loginInfo");
     } else {
       return false;
@@ -39,6 +48,7 @@ export default class Nav extends React.Component {
 
   onSuccessLogin(user) {
     //display username somewhere
+    alert(localStorage.getItem("time").toString());
     alert("login successful");
     localStorage.setItem("loginInfo", "true");
     localStorage.setItem("userLogged", user);
@@ -62,53 +72,66 @@ export default class Nav extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if(this.state.username === "") {
-        alert("Username Required")
+      alert("Username Required")
     } else if(this.state.password === "") {
-        alert("Password Required")
+      alert("Password Required")
     } else {
-        //insert backend call here
-        //timeout waiting for callback
-        this.onSuccessLogin("username");    //username to be changed to the userid
-        alert(this.state.username + this.state.password);
+      //insert backend call here
+      //timeout waiting for callback
+      this.onSuccessLogin("username");    //username to be changed to the userid
+      alert(this.state.username + this.state.password);
     }
   }
+
   handleOpenModal () {
     this.setState({ showModal: true });
     this.handleCloseCheckModal();
   }
 
   handleOpenCheckModal() {
-      const test = this.props.location.pathname.toString();
-      if(test !== "/problems" && test !== "/settings") {
-          this.handleCloseCheckModal();
-      } else {
-          this.setState({showAlert: true});
-      }
+    const test = this.props.location.pathname.toString();
+    if(test !== "/problems" && test !== "/settings") {
+      this.handleCloseCheckModal();
+    } else {
+      this.setState({showAlert: true});
+    }
   }
 
   handleCloseModal () {
     this.setState({ showModal: false });
 
     if(this.props.location.pathname === ("/problems" || "/settings")) {
-        if (!this.state.isLoggedIn) {
-            this.handleOpenCheckModal();
-        }
+      if (!this.state.isLoggedIn) {
+        this.handleOpenCheckModal();
+      }
     }
     this.setState({username: "", password: ""});
   }
 
   handleCloseCheckModal () {
-      this.setState( {showAlert: false});
+    this.setState( {showAlert: false});
   }
 
   logout() {
-      localStorage.removeItem("loginInfo");
-      localStorage.removeItem("userLogged");
-      alert("logout successful");
-      this.setState({isLoggedIn: false});
-      location.href = "http://localhost:8080";
+    localStorage.removeItem("loginInfo");
+    localStorage.removeItem("userLogged");
+    alert("logout successful");
+    this.setState({isLoggedIn: false});
+    location.href = "http://localhost:8080";
+  }
+  onUnload(event) {
+    //event.returnValue = "Helloooww"
+    const date = new Date();
+    const time = (date.getTime()).toString()
+    localStorage.setItem("time", time);
   }
 
+  componentDidMount() {
+    window.addEventListener('beforeunload', this.onUnload);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', this.onUnload);
+  }
 
   render() {
     const { location } = this.props;
