@@ -32,6 +32,9 @@ export default class Solutions extends React.Component {
         }else {
             alert(this.state.value);
             //backend code
+            //author of submission can be accessed via
+            // localStorage.getItem("userLogged") which
+            //returns user currently logged in
         }
         event.preventDefault();
     }

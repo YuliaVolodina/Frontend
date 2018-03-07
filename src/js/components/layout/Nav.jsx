@@ -12,9 +12,8 @@ export default class Nav extends React.Component {
       showAlert: false,
       username: "",
       password: "",
-      isLoggedIn: false
+      isLoggedIn: this.getInitialState()
     };
-    this.onSuccessLogin = this.onSuccessLogin.bind(this);
     this.onFailLogin = this.onFailLogin.bind(this);
     this.handleChangeUser = this.handleChangeUser.bind(this);
     this.handleChangePass = this.handleChangePass.bind(this);
@@ -26,14 +25,23 @@ export default class Nav extends React.Component {
     this.logout = this.logout.bind(this);
   }
 
+  getInitialState() {
+    if(localStorage.getItem( "loginInfo" ))  {
+      return localStorage.getItem("loginInfo");
+    } else {
+      return false;
+    }
+  }
   toggleCollapse() {
     const collapsed = !this.state.collapsed;
     this.setState({collapsed});
   }
 
-  onSuccessLogin() {
+  onSuccessLogin(user) {
     //display username somewhere
     alert("login successful");
+    localStorage.setItem("loginInfo", "true");
+    localStorage.setItem("userLogged", user);
     this.setState({isLoggedIn: true});
     this.handleCloseModal();
     this.setState({username: "", password: ""});
@@ -51,8 +59,6 @@ export default class Nav extends React.Component {
     this.setState({password: event.target.value});
   }
 
-
-
   handleSubmit(event) {
     event.preventDefault();
     if(this.state.username === "") {
@@ -62,7 +68,7 @@ export default class Nav extends React.Component {
     } else {
         //insert backend call here
         //timeout waiting for callback
-        this.onSuccessLogin();
+        this.onSuccessLogin("username");    //username to be changed to the userid
         alert(this.state.username + this.state.password);
     }
   }
@@ -95,15 +101,14 @@ export default class Nav extends React.Component {
       this.setState( {showAlert: false});
   }
 
-
-
   logout() {
-    // localStorage.clear();
+      localStorage.removeItem("loginInfo");
+      localStorage.removeItem("userLogged");
       alert("logout successful");
       this.setState({isLoggedIn: false});
       location.href = "http://localhost:8080";
-      
   }
+
 
   render() {
     const { location } = this.props;

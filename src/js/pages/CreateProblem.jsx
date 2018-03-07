@@ -29,9 +29,7 @@ export default class CreateProblem extends React.Component {
 
     handleChange1(event) {
         this.setState({field1: event.target.value});
-
         console.log(this.state);
-
     }
 
     handleChange2(event) {
@@ -67,7 +65,7 @@ export default class CreateProblem extends React.Component {
                 "difficulty": this.state.field3,
                 "description": this.state.field4,
                 "solution": this.state.field5,
-                "author": "me",
+                "author": localStorage.getItem("userLogged"),
                 "rating": 0
             }
             axios.post("http://localhost:80/restapi/problem/", jsonpayload)
