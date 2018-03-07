@@ -119,18 +119,17 @@ export default class Nav extends React.Component {
     this.setState({isLoggedIn: false});
     location.href = "http://localhost:8080";
   }
-  onUnload(event) {
-    //event.returnValue = "Helloooww"
+  onUnload() {
     const date = new Date();
     const time = (date.getTime()).toString()
     localStorage.setItem("time", time);
   }
 
   componentDidMount() {
-    window.addEventListener('beforeunload', this.onUnload);
+    window.addEventListener("beforeunload", this.onUnload);
   }
   componentWillUnmount() {
-    window.removeEventListener('beforeunload', this.onUnload);
+    window.removeEventListener("beforeunload", this.onUnload);
   }
 
   render() {

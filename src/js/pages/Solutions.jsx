@@ -2,8 +2,6 @@ import React from "react"
 import Textarea from "react-textarea-autosize";
 
 export default class Solutions extends React.Component {
-
-    problem = [];
     problem = this.props.location.state.testvalue;
 
     constructor(props) {
@@ -20,10 +18,10 @@ export default class Solutions extends React.Component {
         this.setState({value: event.target.value});
     }
 
-    onFeedback1(event) {
+    onFeedback1() {
         alert("Good Job! you Completed the Problem");
     }
-    onFeedback2(event) {
+    onFeedback2() {
         alert("Please Try Again");
     }
     handleSubmit(event) {
