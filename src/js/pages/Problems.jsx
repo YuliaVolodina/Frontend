@@ -10,7 +10,6 @@ import List from "../components/ProblemList.jsx";
 
 export default class Problems extends React.Component {
     login = this.props.location.state.login;
-
     state = {
         showModal: false,
         Problems: [{
@@ -22,16 +21,7 @@ export default class Problems extends React.Component {
             id: 1
         }].map((problem, i) => <List key={i} problem={problem}/> )
     };
-
-    loginCheck() {
-        if(this.login == false) {
-            alert("false");
-            return
-        }
-        alert("true");
-    }
-
-
+    
     componentDidMount() {
         axios.get("http://localhost:80/restapi/problem/")
             .then(response => {
@@ -49,7 +39,7 @@ export default class Problems extends React.Component {
     }
 
     render() {
-        //this.loginCheck();
+
         const { query } = this.props.location;
         const { params } = this.props;
         const { article } = params;

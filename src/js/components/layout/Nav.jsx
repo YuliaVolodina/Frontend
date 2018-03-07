@@ -5,10 +5,11 @@ import ReactModal from "react-modal"
 
 export default class Nav extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       collapsed: true,
       showModal: false,
+      showAlert: false,
       username: "",
       password: "",
       isLoggedIn: false
@@ -19,17 +20,20 @@ export default class Nav extends React.Component {
     this.handleChangePass = this.handleChangePass.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleOpenCheckModal = this.handleOpenCheckModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleCloseCheckModal = this.handleCloseCheckModal.bind(this);
   }
 
   toggleCollapse() {
     const collapsed = !this.state.collapsed;
     this.setState({collapsed});
   }
+
   onSuccessLogin() {
     //display username somewhere
     alert("login successful");
-    this.setState({isLoggedIn: true})
+    this.setState({isLoggedIn: true});
     this.handleCloseModal();
     this.setState({username: "", password: ""});
   }
@@ -63,12 +67,31 @@ export default class Nav extends React.Component {
   }
   handleOpenModal () {
     this.setState({ showModal: true });
+    this.handleCloseCheckModal();
+  }
+
+  handleOpenCheckModal() {
+      const test = this.props.location.pathname.toString();
+      if(test !== "/problems" && test !== "/settings") {
+          this.handleCloseCheckModal();
+      } else {
+          this.setState({showAlert: true});
+      }
   }
 
   handleCloseModal () {
     this.setState({ showModal: false });
+
+    if(this.props.location.pathname === ("/problems" || "/settings")) {
+        if (!this.state.isLoggedIn) {
+            this.handleOpenCheckModal();
+        }
+    }
     this.setState({username: "", password: ""});
-    //insert backend code
+  }
+
+  handleCloseCheckModal () {
+      this.setState( {showAlert: false});
   }
 
   render() {
@@ -113,11 +136,11 @@ export default class Nav extends React.Component {
             <ReactModal
                 style={{
                     overlay:{
-                        left: "25%",
+                        left: "0%",
                         right: "25%",
                         top: "90px",
                         height: "600px",
-                        width: "600px"
+                        width: "1200px"
                     }
                 }}
                 isOpen={this.state.showModal}
@@ -135,6 +158,21 @@ export default class Nav extends React.Component {
                 <a className="btn -btn-action" onClick={this.handleSubmit}>Submit</a>
                 <a className="btn -btn-action" >Create New Account?</a>
             </ReactModal>
+          <ReactModal
+              style={{
+                  overlay:{
+                      left: "0%",
+                      right: "25%",
+                      top: "90px",
+                      height: "600px",
+                      width: "1200px"
+                  }
+              }}
+              isOpen={!this.state.isLoggedIn && !this.state.showModal && (this.props.location.pathname.toString() === ("/problems")
+                    ||this.props.location.pathname.toString() === ("/settings"))}
+              contentLabel="Minimal Modal Example">
+              <h1>Login plz</h1>
+          </ReactModal>
           </div>
         </div>
       </nav>
