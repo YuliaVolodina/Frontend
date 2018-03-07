@@ -94,6 +94,16 @@ export default class Nav extends React.Component {
       this.setState( {showAlert: false});
   }
 
+
+
+  logout() {
+    // localStorage.clear();
+      alert("logout successful");
+      this.this.setState({isLoggedIn: false});
+      location.href = "http://localhost:8080";
+      
+  }
+
   render() {
     const { location } = this.props;
     const { collapsed } = this.state;
@@ -130,7 +140,7 @@ export default class Nav extends React.Component {
               </li>
             </ul>
             <a className="btn -btn-default" onClick={this.handleOpenModal}>Login</a>
-              <a className="btn -btn-default">Logout</a>
+              <a className="btn -btn-default" onClick={this.logout}>Logout</a>
           </div>
           <div>
             <ReactModal
