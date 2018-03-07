@@ -23,6 +23,7 @@ export default class Nav extends React.Component {
     this.handleOpenCheckModal = this.handleOpenCheckModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCloseCheckModal = this.handleCloseCheckModal.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   toggleCollapse() {
@@ -99,7 +100,7 @@ export default class Nav extends React.Component {
   logout() {
     // localStorage.clear();
       alert("logout successful");
-      this.this.setState({isLoggedIn: false});
+      this.setState({isLoggedIn: false});
       location.href = "http://localhost:8080";
       
   }
@@ -139,7 +140,7 @@ export default class Nav extends React.Component {
                 <Link to="help" onClick={this.toggleCollapse.bind(this)}>Help</Link>
               </li>
             </ul>
-            <a className="btn -btn-default" onClick={this.handleOpenModal}>Login</a>
+            <a  className="btn -btn-default" onClick={this.handleOpenModal}>Login</a>
               <a className="btn -btn-default" onClick={this.logout}>Logout</a>
           </div>
           <div>
