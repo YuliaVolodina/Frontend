@@ -78,6 +78,7 @@ export default class ProblemList extends React.Component{
                 <p id = "rev">reviews: </p>
                 <ReactStars count={5} value={this.getRevRating(problem.id)} onChange = {this.handleRating} size={24} half={false} color2={"#fffe2b"}/>
                 <a  className={solutionsClass}>
+                <a className = "delete" href="#">Delete</a>
                     <Link className="btn btn-success" to={{pathname: "/solutions", state:{ testvalue: problem}}}  >Solve</Link>
                 </a>
                 <ReactModal
