@@ -168,7 +168,7 @@ export default class Nav extends React.Component {
               isOpen={!this.state.isLoggedIn && !this.state.showModal && (this.props.location.pathname.toString() === ("/problems")
                     ||this.props.location.pathname.toString() === ("/settings"))}
               contentLabel="Minimal Modal Example">
-              <h1>Login plz</h1>
+              <h1>Please Login To View This Page</h1>
           </ReactModal>
           </div>
         </div>
