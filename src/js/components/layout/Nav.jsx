@@ -168,49 +168,49 @@ export default class Nav extends React.Component {
               </li>
             </ul>
             <a  className="btn -btn-default" onClick={this.handleOpenModal}>Login</a>
-              <a className="btn -btn-default" onClick={this.logout}>Logout</a>
+            <a className="btn -btn-default" onClick={this.logout}>Logout</a>
           </div>
           <div>
             <ReactModal
-                style={{
-                    overlay:{
-                        left: "0%",
-                        right: "25%",
-                        top: "90px",
-                        height: "600px",
-                        width: "1200px"
-                    }
-                }}
-                isOpen={this.state.showModal}
-                contentLabel="Minimal Modal Example">
-                <button onClick={this.handleCloseModal}>&#9587;</button>
-                <h1>Login</h1>
+              style={{
+                overlay:{
+                  left: "0%",
+                  right: "25%",
+                  top: "90px",
+                  height: "600px",
+                  width: "1200px"
+                }
+              }}
+              isOpen={this.state.showModal}
+              contentLabel="Minimal Modal Example">
+              <button onClick={this.handleCloseModal}>&#9587;</button>
+              <h1>Login</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Username: <input type="text" onChange={this.handleChangeUser}/>
-                    </label>
-                    <label>
-                        Password: <input type="password" onChange={this.handleChangePass}/>
-                    </label>
+                  <label>
+                    Username: <input type="text" onChange={this.handleChangeUser}/>
+                  </label>
+                  <label>
+                    Password: <input type="password" onChange={this.handleChangePass}/>
+                  </label>
                 </form>
                 <a className="btn -btn-action" onClick={this.handleSubmit}>Submit</a>
                 <a className="btn -btn-action" >Create New Account?</a>
             </ReactModal>
-          <ReactModal
+            <ReactModal
               style={{
-                  overlay:{
-                      left: "0%",
-                      right: "25%",
-                      top: "90px",
-                      height: "600px",
-                      width: "1200px"
-                  }
+                overlay:{
+                  left: "0%",
+                  right: "25%",
+                  top: "90px",
+                  height: "600px",
+                  width: "1200px"
+                }
               }}
               isOpen={!this.state.isLoggedIn && !this.state.showModal && (this.props.location.pathname.toString() === ("/problems")
-                    ||this.props.location.pathname.toString() === ("/settings"))}
+                  ||this.props.location.pathname.toString() === ("/settings"))}
               contentLabel="Minimal Modal Example">
               <h1>Please Login To View This Page</h1>
-          </ReactModal>
+            </ReactModal>
           </div>
         </div>
       </nav>
