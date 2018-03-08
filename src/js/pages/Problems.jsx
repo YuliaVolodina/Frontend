@@ -168,7 +168,7 @@ export default class Problems extends React.Component {
     }
 
     handleSearch = (searchTerm) => {
-        console.log("hello");
+        // console.log("hello");
         const temp = [];
             for(let problem of this.Problems){
                 if(problem.name.indexOf(this.state.searchTerm) !== -1) {
@@ -179,13 +179,13 @@ export default class Problems extends React.Component {
                 }
             }
             console.log(temp);
-            const beginnerProblems = temp.map((problem, i) => <List key={i} problem={problem}/> );
-            this.setState({Problems: beginnerProblems});
+            const searchedProblems = temp.map((problem, i) => <List key={i} problem={problem}/> );
+            this.setState({Problems: searchedProblems});
     }
 
     searchTemp(event) {
         this.setState({searchTerm : event.target.value});
-        console.log("bebye");
+        // console.log("bebye");
     }
 
 
