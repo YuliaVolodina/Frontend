@@ -19,8 +19,11 @@ export default class Problems extends React.Component {
             id: 1
         }].map((problem, i) => <List key={i} problem={problem}/> ),
         selectedOption: '',
+		search: '',
     };
 
+	
+	
     componentDidMount() {
         axios.get("http://localhost:8000/restapi/problems/")
             .then(response => {
@@ -36,12 +39,18 @@ export default class Problems extends React.Component {
                 console.log(error);
             })
     }
-
+	
     handleChange = (selectedOption) => {
         this.setState({ selectedOption });
         console.log(`Selected: ${selectedOption.label}`);
     }
 
+	// Search funcitonality	
+	updateSearch(event){
+		this.setState({search: event.target.value});
+	}
+	//Search funcitonality
+	
     render() {
         const { query } = this.props.location;
         const { params } = this.props;
@@ -58,7 +67,7 @@ export default class Problems extends React.Component {
         const value = selectedOption && selectedOption.value;
         const filtered = [];
 
-        const filter = () => {
+         const filter = () => {
             for(let problems of Problems){
                 if(selectedOption.label.equals("Difficulty")) {
                     if (problems.difficulty.equals(selectedOption)) {
@@ -73,11 +82,18 @@ export default class Problems extends React.Component {
             }
         }
 
-
+		let searchedProblems = this.state.Problems;
+		
         return (
             <div>
                 <h1>Problems</h1>
-                <Select
+				
+					<input type="text"
+					value={this.state.search}
+					onChange={this.updateSearch.bind(this)}
+					 />
+					
+					<Select
                     name="form-field-name"
                     value={value}
                     placeholder="Filter by..."
@@ -91,7 +107,8 @@ export default class Problems extends React.Component {
                         { value: 'Expert', label: 'Expert' },
                     ]}
                 />
-                <div class="row">{this.state.Problems}</div>
+				
+                <div class="row">{searchedProblems}</div>
                 <a  className={createProblemClass}>
                     <Link class="btn btn-success" to="createProblem">Add Problem</Link>
                 </a>
