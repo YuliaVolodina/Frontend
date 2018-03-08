@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { IndexLink, Link } from "react-router";
+// import { Button } from 'react-native';
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -47,7 +48,7 @@ export default class Problems extends React.Component {
             }
         ].map((problem, i) => <List key={i} problem={problem}/> ),
         selectedOption: '',
-        filtered: []
+        searchTerm: '',
     };
 
     Problems = [{
@@ -107,63 +108,84 @@ export default class Problems extends React.Component {
     }
 
     handleFilter(label){
-            if(label == ("Difficulty: low to high")) {
-                var sortedObj = _.sortBy(this.Problems, function (character) { return character.difficulty ; });
-                const filtered = sortedObj.map((problem, i) => <List key={i} problem={problem}/> )
-                this.setState({Problems: filtered});
-            }
-            if(label == ("Difficulty: high to low")) {
-                var sortedObj = _.sortBy(this.Problems, function (character) { return character.difficulty ; });
-                const filtered = sortedObj.reverse().map((problem, i) => <List key={i} problem={problem}/> )
-                this.setState({Problems: filtered});
-            }
-            if(label == ("Rating: low to high")){
-                var sortedObj = _.sortBy(this.Problems, function (character) { return character.good ; });
-                const filtered = sortedObj.map((problem, i) => <List key={i} problem={problem}/> );
-                this.setState({Problems: filtered});
-            }
-            if(label == ("Rating: high to low")){
-                var sortedObj = _.sortBy(this.Problems, function (character) { return character.good ; });
-                const filtered = sortedObj.reverse().map((problem, i) => <List key={i} problem={problem}/> );
-                this.setState({Problems: filtered});
-            }
-            if(label == "New"){
-                const newestProblems = this.Problems.reverse().map((problem, i) => <List key={i} problem={problem}/> );
-                this.setState({Problems: newestProblems});
-            }
-            if(label == "Beginner"){
-                const temp = [];
-                for(let problem of this.Problems){
-                    if(problem.difficulty < 3){
-                        temp.push(problem);
-                    }
+        if(label == ("Difficulty: low to high")) {
+            var sortedObj = _.sortBy(this.Problems, function (character) { return character.difficulty ; });
+            const filtered = sortedObj.map((problem, i) => <List key={i} problem={problem}/> )
+            this.setState({Problems: filtered});
+        }
+        if(label == ("Difficulty: high to low")) {
+            var sortedObj = _.sortBy(this.Problems, function (character) { return character.difficulty ; });
+            const filtered = sortedObj.reverse().map((problem, i) => <List key={i} problem={problem}/> )
+            this.setState({Problems: filtered});
+        }
+        if(label == ("Rating: low to high")){
+            var sortedObj = _.sortBy(this.Problems, function (character) { return character.good ; });
+            const filtered = sortedObj.map((problem, i) => <List key={i} problem={problem}/> );
+            this.setState({Problems: filtered});
+        }
+        if(label == ("Rating: high to low")){
+            var sortedObj = _.sortBy(this.Problems, function (character) { return character.good ; });
+            const filtered = sortedObj.reverse().map((problem, i) => <List key={i} problem={problem}/> );
+            this.setState({Problems: filtered});
+        }
+        if(label == "New"){
+            const newestProblems = this.Problems.reverse().map((problem, i) => <List key={i} problem={problem}/> );
+            this.setState({Problems: newestProblems});
+        }
+        if(label == "Beginner"){
+            const temp = [];
+            for(let problem of this.Problems){
+                if(problem.difficulty < 3){
+                    temp.push(problem);
                 }
-                console.log(temp);
-                const beginnerProblems = temp.map((problem, i) => <List key={i} problem={problem}/> );
-                this.setState({Problems: beginnerProblems});
             }
-            if(label == "Intermediate"){
-                const temp = [];
-                for(let problem of this.Problems){
-                    if(problem.difficulty == 3){
-                        temp.push(problem);
-                    }
+            console.log(temp);
+            const beginnerProblems = temp.map((problem, i) => <List key={i} problem={problem}/> );
+            this.setState({Problems: beginnerProblems});
+        }
+        if(label == "Intermediate"){
+            const temp = [];
+            for(let problem of this.Problems){
+                if(problem.difficulty == 3){
+                    temp.push(problem);
                 }
-                console.log(temp);
-                const intermediateProblems = temp.map((problem, i) => <List key={i} problem={problem}/> );
-                this.setState({Problems: intermediateProblems});
             }
-            if(label == "Expert"){
-                const temp = [];
-                for(let problem of this.Problems){
-                    if(problem.difficulty > 3){
-                        temp.push(problem);
-                    }
+            console.log(temp);
+            const intermediateProblems = temp.map((problem, i) => <List key={i} problem={problem}/> );
+            this.setState({Problems: intermediateProblems});
+        }
+        if(label == "Expert"){
+            const temp = [];
+            for(let problem of this.Problems){
+                if(problem.difficulty > 3){
+                    temp.push(problem);
                 }
-                console.log(temp);
-                const expertProblems = temp.map((problem, i) => <List key={i} problem={problem}/> );
-                this.setState({Problems: expertProblems});
             }
+            console.log(temp);
+            const expertProblems = temp.map((problem, i) => <List key={i} problem={problem}/> );
+            this.setState({Problems: expertProblems});
+        }
+    }
+
+    handleSearch = (searchTerm) => {
+        console.log("hello");
+        const temp = [];
+            for(let problem of this.Problems){
+                if(problem.name.indexOf(this.state.searchTerm) !== -1) {
+                    temp.push(problem);
+                }
+                else if(problem.description.indexOf(this.state.searchTerm) !== -1) {
+                    temp.push(problem);
+                }
+            }
+            console.log(temp);
+            const beginnerProblems = temp.map((problem, i) => <List key={i} problem={problem}/> );
+            this.setState({Problems: beginnerProblems});
+    }
+
+    searchTemp(event) {
+        this.setState({searchTerm : event.target.value});
+        console.log("bebye");
     }
 
 
@@ -184,9 +206,14 @@ export default class Problems extends React.Component {
         const filtered = [];
 
 
+
         return (
             <div>
                 <h1>Problems</h1>
+                <p>Search by : <input type="text" onChange={this.searchTemp.bind(this)}/> 
+                    <a class="btn btn-success" onClick={this.handleSearch}>Search</a>
+
+                </p>
                 <Select
                     name="form-field-name"
                     value={value}
