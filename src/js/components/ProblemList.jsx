@@ -1,7 +1,7 @@
 import React from "react"
 import ReactStars from "react-stars"
 import { Link } from "react-router";
-import ReactModal from 'react-modal';
+import ReactModal from "react-modal";
 import Textarea from "react-textarea-autosize";
 
 
@@ -78,9 +78,9 @@ export default class ProblemList extends React.Component{
                     {problem.description} <br/>
                 </p>
                 <p id = "diff">difficulty: </p>
-                <ReactStars count={5} value={this.getDiffRating(problem.id)} onChange = {this.setDiffRating} size={24} half={false} color2={"#fffe2b"}/>
+                <ReactStars count={5} value={problem.difficulty} onChange = {this.setDiffRating} size={24} half={false} color2={"#fffe2b"}/>
                 <p id = "rev">reviews: </p>
-                <ReactStars count={5} value={this.getRevRating(problem.id)} onChange = {this.handleRating} size={24} half={false} color2={"#fffe2b"}/>
+                <ReactStars count={5} value={problem.good} onChange = {this.handleRating} size={24} half={false} color2={"#fffe2b"}/>
                 <a  className={solutionsClass}>
                     <Link className="btn btn-success" to={{pathname: "/solutions", state:{ testvalue: problem}}}  >Solve</Link>
                 </a>
