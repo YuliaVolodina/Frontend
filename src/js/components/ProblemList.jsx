@@ -4,8 +4,6 @@ import { Link } from "react-router";
 import ReactModal from "react-modal";
 import Textarea from "react-textarea-autosize";
 
-
-
 export default class ProblemList extends React.Component{
 
     constructor () {
@@ -47,23 +45,21 @@ export default class ProblemList extends React.Component{
     handleRating(event){
         this.setState({rating: event});
         this.handleOpenModal();
-
     }
 
-      getDiffRating(problemID){
+    getDiffRating(problemID){
         //go get current rating from backend with problem id
         //return (problemID + 1)
     }
-      getRevRating(problemID){
+    getRevRating(problemID){
         //go get current rating from backend with problem id
         //return (problemID - 1)
     }
 
-     setDiffRating(newRating){
+    setDiffRating(newRating){
         //update value in backend with new rating, problem id and user id
         //window.alert(newRating)
     }
-
 
     render() {
         const{ problem } = this.props;
@@ -82,6 +78,7 @@ export default class ProblemList extends React.Component{
                 <p id = "rev">reviews: </p>
                 <ReactStars count={5} value={problem.good} onChange = {this.handleRating} size={24} half={false} color2={"#fffe2b"}/>
                 <a  className={solutionsClass}>
+                
                     <Link className="btn btn-success" to={{pathname: "/solutions", state:{ testvalue: problem}}}  >Solve</Link>
                 </a>
                 <ReactModal
@@ -99,7 +96,7 @@ export default class ProblemList extends React.Component{
                     <button onClick={this.handleCloseModal}>Close</button>
                     <h1>Leave a comment (optional)</h1>
                     <Textarea style = {{width:400, height: 300}} onChange={this.handleChange}/>
-                    <a class="btn -btn-default" onClick={this.handleSubmit}>Submit</a>
+                    <a className="btn -btn-default" onClick={this.handleSubmit}>Submit</a>
                 </ReactModal>
             </div>
         );

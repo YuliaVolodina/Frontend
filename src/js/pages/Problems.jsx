@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { IndexLink, Link } from "react-router";
 // import { Button } from 'react-native';
+import ReactModal from "react-modal"
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -13,7 +14,9 @@ var _ = require('underscore')._;
 
 
 export default class Problems extends React.Component {
+    login = this.props.location.state.login;
     state = {
+        showModal: false,
         Problems: [{
             name: "1",
             author: "fast",
@@ -86,7 +89,7 @@ export default class Problems extends React.Component {
     ];
 
     componentDidMount() {
-        axios.get("http://localhost:8000/restapi/problems/")
+        axios.get("http://localhost:80/restapi/problem/")
             .then(response => {
                 console.log(response);
                 this.Problems = response.data.map((ent) => {
@@ -190,20 +193,17 @@ export default class Problems extends React.Component {
 
 
     render() {
+
         const { query } = this.props.location;
         const { params } = this.props;
         const { article } = params;
         const createProblemClass = location.pathname.match(/^\/createProblem/) ? "active" : "";
 
 
-        const options = [
-            'one', 'two', 'three'
-        ];
-        const defaultOption = options[0];
-
         const { selectedOption } = this.state;
         const value = selectedOption && selectedOption.value;
         const filtered = [];
+
 
 
 
@@ -231,11 +231,13 @@ export default class Problems extends React.Component {
                     ]}
                 />
                 <div class="row">{this.state.Problems}</div>
-                <a  className={createProblemClass}>
-                    <Link class="btn btn-success" to="createProblem">Add Problem</Link>
+                <a style={{align: "top-right"}} className={createProblemClass}>
+                    <Link  class="btn btn-default"  to={{pathname: '/createProblem', state:{ testvalue: params}}} >Create New Problem</Link>
                 </a>
 
                 <div class="row">{Problems}</div>
+                <button>{localStorage.getItem("userLogged").toString()}</button>
+                <button>{this.login.toString()}</button>
             </div>
         );
     }
