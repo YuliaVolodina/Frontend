@@ -5,5 +5,6 @@ export default class MyProblems extends React.Component {
 
     render() {
         return <h1>My Problems</h1>;
+        <a className = "delete" href="#">Delete</a>
     }
 }
