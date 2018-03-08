@@ -91,19 +91,20 @@ export default class Nav extends React.Component {
     this.handleCloseCheckModal();
   }
 
+
   handleOpenCheckModal() {
-    const test = this.props.location.pathname.toString();
-    if(test !== "/problems" && test !== "/settings") {
-      this.handleCloseCheckModal();
-    } else {
-      this.setState({showAlert: true});
-    }
+      const test = this.props.location.pathname.toString();
+      if((test !== "/problems" && test !== "/settings") && test !== "/myProblems") {
+        this.handleCloseCheckModal();
+      } else {
+        this.setState({showAlert: true});
+      }
   }
 
   handleCloseModal () {
     this.setState({ showModal: false });
 
-    if(this.props.location.pathname === ("/problems" || "/settings")) {
+    if(this.props.location.pathname === ("/problems" || "/settings" || "/myProblems")) {
       if (!this.state.isLoggedIn) {
         this.handleOpenCheckModal();
       }
@@ -122,9 +123,10 @@ export default class Nav extends React.Component {
     this.setState({isLoggedIn: false});
     location.href = "http://localhost:8080";
   }
+
   onUnload() {
     const date = new Date();
-    const time = (date.getTime()).toString();
+    const time = (date.getTime()).toString()
     localStorage.setItem("time", time);
   }
 
@@ -141,6 +143,7 @@ export default class Nav extends React.Component {
     const featuredClass = location.pathname === "/" ? "active" : "";
     const helpClass = location.pathname.match(/^\/help/) ? "active" : "";
     const problemsClass = location.pathname.match(/^\/problems/) ? "active" : "";
+    const myProblemsClass = location.pathname.match(/^\/myProblems/) ? "active" : "";
     const settingsClass = location.pathname.match(/^\/settings/) ? "active" : "";
     const navClass = collapsed ? "collapse" : "";
 
@@ -153,6 +156,7 @@ export default class Nav extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
             </button>
           </div>
           <div className={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
@@ -162,6 +166,9 @@ export default class Nav extends React.Component {
               </li>
               <li className={problemsClass}>
                 <Link to={{pathname: "problems", state:{login: this.state.isLoggedIn}}} onClick={this.toggleCollapse.bind(this)}>Problems</Link>
+              </li>
+              <li className={myProblemsClass}>
+                <Link to={{pathname: "myProblems", state:{login: this.state.isLoggedIn}}} onClick={this.toggleCollapse.bind(this)}>My Problems</Link>
               </li>
               <li className={settingsClass}>
                 <Link to={{pathname: "settings", state:{login: this.state.isLoggedIn}}} onClick={this.toggleCollapse.bind(this)}>Settings</Link>
@@ -210,26 +217,26 @@ export default class Nav extends React.Component {
                 }
               }}
               isOpen={!this.state.isLoggedIn && !this.state.showModal && (this.props.location.pathname.toString() === ("/problems")
-                  ||this.props.location.pathname.toString() === ("/settings"))}
+                  ||this.props.location.pathname.toString() === ("/settings") ||this.props.location.pathname.toString() === ("/myProblems"))}
               contentLabel="Minimal Modal Example">
               <h1>Please Login To View This Page</h1>
             </ReactModal>
           </div>
-        </div>
-      </nav>
-    );
-  }
+      </div>
+    </nav>
+  );
+}
 }
 
 
 Nav.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }),
+    location: PropTypes.shape({
+        pathname: PropTypes.string.isRequired,
+    }),
 };
 
 Nav.defaultProps = {
-  location: {
-    pathname: "",
-  },
+    location: {
+        pathname: "",
+    },
 };
