@@ -14,14 +14,15 @@ var _ = require('underscore')._;
 
 export default class Problems extends React.Component {
     state = {
-        Problems: [{
-            name: "1",
-            author: "fast",
-            description: "sk8",
-            difficulty: 1,
-            good: 4,
-            id: 1
-        },
+        Problems: [
+            {
+                name: "1",
+                author: "fast",
+                description: "sk8",
+                difficulty: 1,
+                good: 4,
+                id: 1
+            },
             {
                 name: "2",
                 author: "fast",
@@ -195,6 +196,7 @@ export default class Problems extends React.Component {
         const { article } = params;
         const createProblemClass = location.pathname.match(/^\/createProblem/) ? "active" : "";
 
+
         const options = [
             'one', 'two', 'three'
         ];
@@ -203,14 +205,14 @@ export default class Problems extends React.Component {
         const { selectedOption } = this.state;
         const value = selectedOption && selectedOption.value;
         const filtered = [];
-
+        
         let noProblemMessage;
         if (this.state.Problems.length){
             noProblemMessage = <div class="row">{this.state.Problems}</div>;
         } else {
             noProblemMessage = <h1> No problems to display </h1>;
         }
-
+        
         return (
             <div>
                 <h1>Problems</h1>
@@ -234,9 +236,9 @@ export default class Problems extends React.Component {
                         { value: 'Expert', label: 'Expert' },
                     ]}
                 />
-
-                {noProblemsMessage}
-
+                
+                {noProblemMessage}
+                
                 <a  className={createProblemClass}>
                     <Link class="btn btn-success" to="createProblem">Add Problem</Link>
                 </a>
