@@ -58,6 +58,7 @@ export default class CreateAccount extends React.Component {
                 })
 
             //alert(this.state.field3);
+            location.href = "http://localhost:8080";
         }
     
     }
