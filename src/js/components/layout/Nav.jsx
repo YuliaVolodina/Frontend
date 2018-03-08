@@ -145,6 +145,7 @@ export default class Nav extends React.Component {
     const problemsClass = location.pathname.match(/^\/problems/) ? "active" : "";
     const myProblemsClass = location.pathname.match(/^\/myProblems/) ? "active" : "";
     const settingsClass = location.pathname.match(/^\/settings/) ? "active" : "";
+    const createAccountClass = location.pathname.match(/^\/createAccount/) ? "active" : "";
     const navClass = collapsed ? "collapse" : "";
 
     return (
@@ -176,8 +177,11 @@ export default class Nav extends React.Component {
               <li className={helpClass}>
                 <Link to="help" onClick={this.toggleCollapse.bind(this)}>Help</Link>
               </li>
+			  <li className={createAccountClass}>
+                <Link to="createAccount" onClick={this.toggleCollapse.bind(this)}>Sign Up</Link>
+              </li>
             </ul>
-            <a  className="btn -btn-default" onClick={this.handleOpenModal}>Login</a>
+            <a className="btn -btn-default" onClick={this.handleOpenModal}>Login</a>
             <a className="btn -btn-default" onClick={this.logout}>Logout</a>
           </div>
           <div>
@@ -204,7 +208,7 @@ export default class Nav extends React.Component {
                   </label>
                 </form>
                 <a className="btn -btn-action" onClick={this.handleSubmit}>Submit</a>
-                <a className="btn -btn-action" >Create New Account?</a>
+                <Link to="createAccount" onClick={this.handleCloseModal} >Create New Account?</Link>
             </ReactModal>
             <ReactModal
               style={{
