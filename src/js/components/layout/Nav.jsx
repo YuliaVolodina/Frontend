@@ -2,6 +2,7 @@ import React from "react";
 import { IndexLink, Link } from "react-router";
 import PropTypes from "prop-types";
 import ReactModal from "react-modal"
+import Problems from "./../../pages/Problems.jsx";
 
 export default class Nav extends React.Component {
   constructor() {
@@ -31,13 +32,15 @@ export default class Nav extends React.Component {
     if(localStorage.getItem( "loginInfo" ))  {
 
       if(localStorage.getItem("time")) {
-        const time = parseInt(localStorage.getItem("time"))
+        const time = parseInt(localStorage.getItem("time"));
         if((new Date().getTime() - time) > 1000*30) {  //1000 ms = 1s, 60s = 1, 60min = 1hour...
-            return false
+          localStorage.setItem("userLogged", "");
+          return false
         }
       }
       return localStorage.getItem("loginInfo");
     } else {
+      localStorage.setItem("userLogged", "");
       return false;
     }
   }
@@ -48,13 +51,13 @@ export default class Nav extends React.Component {
 
   onSuccessLogin(user) {
     //display username somewhere
-    alert(localStorage.getItem("time").toString());
     alert("login successful");
     localStorage.setItem("loginInfo", "true");
     localStorage.setItem("userLogged", user);
     this.setState({isLoggedIn: true});
     this.handleCloseModal();
     this.setState({username: "", password: ""});
+    setTimeout(function () { window.location.reload(true); }, 0);
   }
 
   onFailLogin() {
@@ -78,7 +81,7 @@ export default class Nav extends React.Component {
     } else {
       //insert backend call here
       //timeout waiting for callback
-      this.onSuccessLogin("username");    //username to be changed to the userid
+      this.onSuccessLogin(this.state.username);    //username to be changed to the userid
       alert(this.state.username + this.state.password);
     }
   }
@@ -121,7 +124,7 @@ export default class Nav extends React.Component {
   }
   onUnload() {
     const date = new Date();
-    const time = (date.getTime()).toString()
+    const time = (date.getTime()).toString();
     localStorage.setItem("time", time);
   }
 
