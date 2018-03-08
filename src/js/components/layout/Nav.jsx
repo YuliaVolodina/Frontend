@@ -93,12 +93,7 @@ export default class Nav extends React.Component {
 
 
   handleOpenCheckModal() {
-      const test = this.props.location.pathname.toString();
-      if((test !== "/problems" && test !== "/settings") && test !== "/myProblems") {
-        this.handleCloseCheckModal();
-      } else {
-        this.setState({showAlert: true});
-      }
+    this.setState({showAlert: true});
   }
 
   handleCloseModal () {
@@ -220,8 +215,14 @@ export default class Nav extends React.Component {
                   width: "1200px"
                 }
               }}
-              isOpen={!this.state.isLoggedIn && !this.state.showModal && (this.props.location.pathname.toString() === ("/problems")
-                  ||this.props.location.pathname.toString() === ("/settings") ||this.props.location.pathname.toString() === ("/myProblems"))}
+              isOpen={!this.state.isLoggedIn && !this.state.showModal && (
+                  this.props.location.pathname.toString() === ("problems") ||
+                  this.props.location.pathname.toString() === ("/problems") ||
+                  this.props.location.pathname.toString() === ("settings") ||
+                  this.props.location.pathname.toString() === ("/settings") ||
+                  this.props.location.pathname.toString() === ("myProblems") ||
+                  this.props.location.pathname.toString() === ("/myProblems")
+              )}
               contentLabel="Minimal Modal Example">
               <h1>Please Login To View This Page</h1>
             </ReactModal>
