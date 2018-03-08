@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { IndexLink, Link } from "react-router";
 // import { Button } from 'react-native';
+import ReactModal from "react-modal"
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -13,9 +14,10 @@ var _ = require('underscore')._;
 
 
 export default class Problems extends React.Component {
+    login = this.props.location.state.login;
     state = {
-        Problems: [
-            {
+            showModal: false,
+            Problems: [{
                 name: "1",
                 author: "fast",
                 description: "sk8",
@@ -87,7 +89,7 @@ export default class Problems extends React.Component {
     ];
 
     componentDidMount() {
-        axios.get("http://localhost:8000/restapi/problems/")
+        axios.get("http://localhost:80/restapi/problem/")
             .then(response => {
                 console.log(response);
                 this.Problems = response.data.map((ent) => {
@@ -191,32 +193,29 @@ export default class Problems extends React.Component {
 
 
     render() {
-        const { query } = this.props.location;
-        const { params } = this.props;
-        const { article } = params;
+
+        const {query} = this.props.location;
+        const {params} = this.props;
+        const {article} = params;
         const createProblemClass = location.pathname.match(/^\/createProblem/) ? "active" : "";
 
 
-        const options = [
-            'one', 'two', 'three'
-        ];
-        const defaultOption = options[0];
-
-        const { selectedOption } = this.state;
+        const {selectedOption} = this.state;
         const value = selectedOption && selectedOption.value;
         const filtered = [];
-        
+
         let noProblemMessage;
-        if (this.state.Problems.length){
+        if (this.state.Problems.length) {
             noProblemMessage = <div class="row">{this.state.Problems}</div>;
         } else {
             noProblemMessage = <h1> No problems to display </h1>;
         }
-        
+
+
         return (
             <div>
                 <h1>Problems</h1>
-                <p>Search by : <input type="text" onChange={this.searchTemp.bind(this)}/> 
+                <p>Search by : <input type="text" onChange={this.searchTemp.bind(this)}/>
                     <a class="btn btn-success" onClick={this.handleSearch}>Search</a>
 
                 </p>
@@ -236,14 +235,19 @@ export default class Problems extends React.Component {
                         { value: 'Expert', label: 'Expert' },
                     ]}
                 />
-                
+
                 {noProblemMessage}
-                
-                <a  className={createProblemClass}>
+
+                <a  className={createProblemClass}></a>
                     <Link class="btn btn-success" to="createProblem">Add Problem</Link>
+                <div class="row">{this.state.Problems}</div>
+                <a style={{align: "top-right"}} className={createProblemClass}>
+                    <Link  class="btn btn-default"  to={{pathname: '/createProblem', state:{ testvalue: params}}} >Create New Problem</Link>
                 </a>
 
                 <div class="row">{Problems}</div>
+                <button>{localStorage.getItem("userLogged").toString()}</button>
+                <button>{this.login.toString()}</button>
             </div>
         );
     }
