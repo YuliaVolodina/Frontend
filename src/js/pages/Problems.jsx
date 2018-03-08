@@ -246,8 +246,6 @@ export default class Problems extends React.Component {
                 </a>
 
                 <div class="row">{Problems}</div>
-                <button>{localStorage.getItem("userLogged").toString()}</button>
-                <button>{this.login.toString()}</button>
             </div>
         );
     }
