@@ -153,8 +153,9 @@ export default class MyProblems extends React.Component {
 
                 <div class="row">{this.state.Problems}</div>
 
+
+
                 <div class="row">{MyProblems}</div>
-                <a className="delete" href="#">Delete</a>
             </div>
         );
     }
