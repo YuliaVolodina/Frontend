@@ -19,7 +19,11 @@ export default class Problems extends React.Component {
         showModal: false,
         Problems: [{
             name: "1",
-            author: "fast",
+            author: {
+                id: 1,
+                username: "fast",
+                github_id: null,
+            },
             description: "sk8",
             difficulty: 1,
             good: 4,
@@ -27,7 +31,11 @@ export default class Problems extends React.Component {
         },
             {
                 name: "2",
-                author: "fast",
+                author: {
+                    id: 2,
+                    username: "alice",
+                    github_id: null,
+                },
                 description: "sk8",
                 difficulty: 2,
                 good: 3,
@@ -35,7 +43,11 @@ export default class Problems extends React.Component {
             },
             {
                 name: "3",
-                author: "fast",
+                author:  {
+                    id: 3,
+                    username: "bob",
+                    github_id: null,
+                },
                 description: "sk8",
                 difficulty: 3,
                 good: 2,
@@ -43,7 +55,11 @@ export default class Problems extends React.Component {
             },
             {
                 name: "4",
-                author: "fast",
+                author: {
+                    id: 3,
+                    username: "patrick",
+                    github_id: null,
+                },
                 description: "sk8",
                 difficulty: 4,
                 good: 1,
@@ -56,7 +72,11 @@ export default class Problems extends React.Component {
 
     Problems = [{
         name: "1",
-        author: "fast",
+        author: {
+            id: 1,
+            username: "fast",
+            github_id: null,
+        },
         description: "sk8",
         difficulty: 1,
         good: 4,
@@ -64,7 +84,11 @@ export default class Problems extends React.Component {
     },
         {
             name: "2",
-            author: "fast",
+            author: {
+                id: 2,
+                username: "alice",
+                github_id: null,
+            },
             description: "sk8",
             difficulty: 2,
             good: 3,
@@ -72,17 +96,25 @@ export default class Problems extends React.Component {
         },
         {
             name: "3",
-            author: "fast",
+            author:  {
+                id: 3,
+                username: "bob",
+                github_id: null,
+            },
             description: "sk8",
-            difficulty: 4,
-            good: 5,
+            difficulty: 3,
+            good: 2,
             id: 3
         },
         {
             name: "4",
-            author: "fast",
+            author: {
+                id: 3,
+                username: "patrick",
+                github_id: null,
+            },
             description: "sk8",
-            difficulty: 3,
+            difficulty: 4,
             good: 1,
             id: 4
         }

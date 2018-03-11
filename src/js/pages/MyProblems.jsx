@@ -17,11 +17,16 @@ import List from "../components/ProblemList.jsx";
 export default class MyProblems extends React.Component {
 
     login = this.props.location.state.login;
+    username = localStorage.getItem("userLogged");
     state = {
         showModal: false,
         Problems: [{
             name: "1",
-            author: "yul",
+            author: {
+                id: 1,
+                username: "fast",
+                github_id: null,
+            },
             description: "sk8",
             difficulty: 1,
             good: 4,
@@ -29,7 +34,11 @@ export default class MyProblems extends React.Component {
         },
             {
                 name: "2",
-                author: "gui",
+                author: {
+                    id: 2,
+                    username: "alice",
+                    github_id: null,
+                },
                 description: "sk8",
                 difficulty: 2,
                 good: 3,
@@ -37,7 +46,11 @@ export default class MyProblems extends React.Component {
             },
             {
                 name: "3",
-                author: "laur",
+                author:  {
+                    id: 3,
+                    username: "bob",
+                    github_id: null,
+                },
                 description: "sk8",
                 difficulty: 3,
                 good: 2,
@@ -45,21 +58,29 @@ export default class MyProblems extends React.Component {
             },
             {
                 name: "4",
-                author: "gab",
+                author: {
+                    id: 3,
+                    username: "patrick",
+                    github_id: null,
+                },
                 description: "sk8",
                 difficulty: 4,
                 good: 1,
                 id: 4
             }
         ].map((problem, i) => <List key={i} problem={problem}/>),
-        selectedOption: '',
-        searchTerm: '',
-        username: "yuls"
+
+
+
     };
 
     Problems = [{
         name: "1",
-        author: "yul",
+        author: {
+            id: 1,
+            username: "fast",
+            github_id: null,
+        },
         description: "sk8",
         difficulty: 1,
         good: 4,
@@ -67,7 +88,11 @@ export default class MyProblems extends React.Component {
     },
         {
             name: "2",
-            author: "gui",
+            author: {
+                id: 2,
+                username: "alice",
+                github_id: null,
+            },
             description: "sk8",
             difficulty: 2,
             good: 3,
@@ -75,28 +100,36 @@ export default class MyProblems extends React.Component {
         },
         {
             name: "3",
-            author: "laur",
+            author:  {
+                id: 3,
+                username: "bob",
+                github_id: null,
+            },
             description: "sk8",
-            difficulty: 4,
-            good: 5,
+            difficulty: 3,
+            good: 2,
             id: 3
         },
         {
             name: "4",
-            author: "gab",
+            author: {
+                id: 3,
+                username: "patrick",
+                github_id: null,
+            },
             description: "sk8",
-            difficulty: 3,
+            difficulty: 4,
             good: 1,
             id: 4
         }
     ];
 
-    handleFilter() {
+    handleFilter(username) {
 
 
         const temp = [];
         for (let problem of this.Problems) {
-            if (problem.author == "yul") {
+            if (problem.author.username === username) {
                 temp.push(problem);
             }
         }
@@ -105,18 +138,18 @@ export default class MyProblems extends React.Component {
         this.setState({Problems: myProblems});
     }
 
+    componentDidMount() {
+
+        this.handleFilter(this.username)
+    }
+
 
     render() {
 
         return (
             <div>
 
-                <h1>My Problems</h1>;
-
-
-
-                <div class="row">{this.handleFilter.bind(this)}</div>
-
+                <h1>My Problems</h1>
 
                 <div class="row">{this.state.Problems}</div>
 

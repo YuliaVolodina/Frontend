@@ -70,7 +70,7 @@ export default class ProblemList extends React.Component{
             <div className="col-md-4">
                 <h4>{problem.name}</h4>
                 <p>
-                    by: {problem.author} <br/>
+                    by: {problem.author.username} <br/>
                     {problem.description} <br/>
                 </p>
                 <p id = "diff">difficulty: </p>
