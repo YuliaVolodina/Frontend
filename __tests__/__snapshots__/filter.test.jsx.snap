@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Problems page information correct'] = `
+<div>
+	<h1>Problems</h1>
+	<p>Search by : <input type="text" onChange={this.searchTemp.bind(this)}/>
+	    <a class="btn btn-success" onClick={this.handleSearch}>Search</a>
+
+	</p>
+	<Select
+	    name="form-field-name"
+	    value={[Function]}
+	    placeholder="Filter by..."
+	    onChange={[Function]}
+	/>
+
+	{Problems}
+
+	<a  className={createProblemClass}></a>
+	    <Link class="btn btn-success" to="createProblem">Add Problem</Link>
+	<div class="row">{[Function]}</div>
+	<a style={{align: "top-right"}} className={createProblemClass}>
+	    <Link  class="btn btn-default"  to={{pathname: '/createProblem', state:{ testvalue: params}}} >Create New Problem</Link>
+	</a>
+
+	<div class="row">{Problems}</div>
+</div>
+`;
