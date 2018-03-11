@@ -146,10 +146,19 @@ export default class MyProblems extends React.Component {
 
     render() {
 
+        let noProblemMessage;
+        if (this.state.Problems.length == 0) {
+
+            noProblemMessage = <h1> You have not created any problems </h1>;
+        }
+
+
         return (
             <div>
 
                 <h1>My Problems</h1>
+
+                {noProblemMessage}
 
                 <div class="row">{this.state.Problems}</div>
 
