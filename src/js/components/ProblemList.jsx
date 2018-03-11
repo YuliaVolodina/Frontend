@@ -63,7 +63,12 @@ export default class ProblemList extends React.Component{
 
     deleteProblem(problem){
         console.log('remove' + problem.name);
+        if(console.log !== ""){
+            alert("Are you sure you want to delete this problem?")
+        }
     }
+
+
 
     render() {
         const{ problem } = this.props;
@@ -87,6 +92,11 @@ export default class ProblemList extends React.Component{
                     <button onClick={(e)=> this.deleteProblem(problem)} type="button" className="btn btn-default btn-sm">
                         Delete
                     </button>
+
+
+
+
+
                 </a>
 
 
