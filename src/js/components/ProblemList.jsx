@@ -64,7 +64,13 @@ export default class ProblemList extends React.Component{
     deleteProblem(problem){
         console.log('remove' + problem.name);
         if(console.log !== ""){
-            alert("Are you sure you want to delete this problem?")
+            //alert("Are you sure you want to delete this problem?")
+            var c = confirm("Are you sure you want to delete this problem?")
+            if(c==true)
+            alert("deleted")
+            else
+            alert("cancelled")
+
         }
     }
 
