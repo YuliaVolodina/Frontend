@@ -5,14 +5,14 @@ import axios from "axios/index";
 export default class CreateAccount extends React.Component {
     //problem = this.props;
 
-
     constructor(props) {
         super(props);
-
+		
         this.state = {
             value:'',
             email: '',
             password: '',
+			repeatedEmail: ''
         };
         this.handleChange1 = this.handleChange1.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
@@ -42,8 +42,12 @@ export default class CreateAccount extends React.Component {
         else if(this.state.password.length < 6){
             alert("Password needs to be at least 6 characters long")
         }
+		else if(this.state.email == this.state.repeatedEmail){
+			alert("Your account has already been used")
+		}
         else {
             alert("Your account has been created")
+			 this.setState({repeatedEmail: this.state.email});
             event.preventDefault();
             var jsonpayload = {
                 "email": this.state.email,
@@ -56,12 +60,14 @@ export default class CreateAccount extends React.Component {
                 .catch(error => {
                     console.log(error);
                 })
-
+			
+			document.getElementById("create-account-form").reset();
             //alert(this.state.field3);
-            location.href = "http://localhost:8080";
+            //location.href = "http://localhost:8080";
         }
     
     }
+	
         render()
         {
            // console.log(this.problem);
@@ -69,11 +75,11 @@ export default class CreateAccount extends React.Component {
             return (
                 <div>
 					<h2> Sign up with your email address </h2>
-                    <form>
+                    <form id="create-account-form">
                         <p>Email address</p>
-                        <p><input type="text" onChange={this.handleChange1}/></p>
-                        <p>Password</p>
-                        <p><input type="password" onChange={this.handleChange2}/></p>
+                        <p><input type="text" defaultValue='' onChange={this.handleChange1}/></p>
+                        <p>Password</p>						
+                        <p><input type="password" defaultValue='' onChange={this.handleChange2}/></p>
                         <a class="btn btn-success" onClick={this.handleSubmit}>Sign up</a>
                     </form>
                 </div>
