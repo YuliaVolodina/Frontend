@@ -272,7 +272,7 @@ export default class Problems extends React.Component {
 
                 <a  className={createProblemClass}></a>
                     <Link class="btn btn-success" to="createProblem">Add Problem</Link>
-                // <div class="row">{this.state.Problems}</div>
+                <div class="row">{this.state.Problems}</div>
                 <a style={{align: "top-right"}} className={createProblemClass}>
                     <Link  class="btn btn-default"  to={{pathname: '/createProblem', state:{ testvalue: params}}} >Create New Problem</Link>
                 </a>
