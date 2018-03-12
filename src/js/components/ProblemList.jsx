@@ -61,6 +61,15 @@ export default class ProblemList extends React.Component{
         //window.alert(newRating)
     }
 
+    deleteProblem(problem){
+        console.log('remove' + problem.name);
+        if(console.log !== ""){
+            alert("Are you sure you want to delete this problem?")
+        }
+    }
+
+
+
     render() {
         const{ problem } = this.props;
 
@@ -70,7 +79,7 @@ export default class ProblemList extends React.Component{
             <div className="col-md-4">
                 <h4>{problem.name}</h4>
                 <p>
-                    by: {problem.author} <br/>
+                    by: {problem.author.username} <br/>
                     {problem.description} <br/>
                 </p>
                 <p id = "diff">difficulty: </p>
@@ -80,7 +89,17 @@ export default class ProblemList extends React.Component{
                 <a  className={solutionsClass}>
                 
                     <Link className="btn btn-success" to={{pathname: "/solutions", state:{ testvalue: problem}}}  >Solve</Link>
+                    <button onClick={(e)=> this.deleteProblem(problem)} type="button" className="btn btn-default btn-sm">
+                        Delete
+                    </button>
+
+
+
+
+
                 </a>
+
+
                 <ReactModal
                     style={{
                         overlay:{

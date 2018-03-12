@@ -10,24 +10,33 @@ import Select from "react-select";
 
 import List from "../components/ProblemList.jsx";
 var sortBy = require('lodash.sortby');
-var _ = require('underscore')._;
+//var _ = require('underscore')._;
 
 
 export default class Problems extends React.Component {
     login = this.props.location.state.login;
     state = {
-            showModal: false,
-            Problems: [{
-                name: "1",
-                author: "fast",
-                description: "sk8",
-                difficulty: 1,
-                good: 4,
-                id: 1
+        showModal: false,
+        Problems: [{
+            name: "1",
+            author: {
+                id: 1,
+                username: "fast",
+                github_id: null,
             },
+            description: "sk8",
+            difficulty: 1,
+            good: 4,
+            id: 1
+        },
+
             {
                 name: "2",
-                author: "fast",
+                author: {
+                    id: 2,
+                    username: "alice",
+                    github_id: null,
+                },
                 description: "sk8",
                 difficulty: 2,
                 good: 3,
@@ -35,7 +44,11 @@ export default class Problems extends React.Component {
             },
             {
                 name: "3",
-                author: "fast",
+                author:  {
+                    id: 3,
+                    username: "bob",
+                    github_id: null,
+                },
                 description: "sk8",
                 difficulty: 3,
                 good: 2,
@@ -43,7 +56,11 @@ export default class Problems extends React.Component {
             },
             {
                 name: "4",
-                author: "fast",
+                author: {
+                    id: 3,
+                    username: "patrick",
+                    github_id: null,
+                },
                 description: "sk8",
                 difficulty: 4,
                 good: 1,
@@ -56,7 +73,11 @@ export default class Problems extends React.Component {
 
     Problems = [{
         name: "1",
-        author: "fast",
+        author: {
+            id: 1,
+            username: "fast",
+            github_id: null,
+        },
         description: "sk8",
         difficulty: 1,
         good: 4,
@@ -64,7 +85,11 @@ export default class Problems extends React.Component {
     },
         {
             name: "2",
-            author: "fast",
+            author: {
+                id: 2,
+                username: "alice",
+                github_id: null,
+            },
             description: "sk8",
             difficulty: 2,
             good: 3,
@@ -72,17 +97,25 @@ export default class Problems extends React.Component {
         },
         {
             name: "3",
-            author: "fast",
+            author:  {
+                id: 3,
+                username: "bob",
+                github_id: null,
+            },
             description: "sk8",
-            difficulty: 4,
-            good: 5,
+            difficulty: 3,
+            good: 2,
             id: 3
         },
         {
             name: "4",
-            author: "fast",
+            author: {
+                id: 3,
+                username: "patrick",
+                github_id: null,
+            },
             description: "sk8",
-            difficulty: 3,
+            difficulty: 4,
             good: 1,
             id: 4
         }
@@ -205,9 +238,8 @@ export default class Problems extends React.Component {
         const filtered = [];
 
         let noProblemMessage;
-        if (this.state.Problems.length) {
-            noProblemMessage = <div class="row">{this.state.Problems}</div>;
-        } else {
+        if (this.state.Problems.length == 0) {
+            
             noProblemMessage = <h1> No problems to display </h1>;
         }
 
