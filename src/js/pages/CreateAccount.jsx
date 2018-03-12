@@ -35,15 +35,19 @@ export default class CreateAccount extends React.Component {
     handleSubmit(event) {
         if (this.state.email == "" || this.state.password == "" ) {
             alert("Please enter your email address and password to create an account")
+			document.getElementById("create-account-form").reset();
         } 
         else if(this.state.email.indexOf("@") === -1){
             alert("Requires valid email")
+			document.getElementById("create-account-form").reset();
         }
         else if(this.state.password.length < 6){
             alert("Password needs to be at least 6 characters long")
+			document.getElementById("create-account-form").reset();
         }
 		else if(this.state.email == this.state.repeatedEmail){
 			alert("Your account has already been used")
+			document.getElementById("create-account-form").reset();
 		}
         else {
             alert("Your account has been created")
@@ -77,9 +81,9 @@ export default class CreateAccount extends React.Component {
 					<h2> Sign up with your email address </h2>
                     <form id="create-account-form">
                         <p>Email address</p>
-                        <p><input type="text" defaultValue='' onChange={this.handleChange1}/></p>
+                        <p><input type="text" onChange={this.handleChange1}/></p>
                         <p>Password</p>						
-                        <p><input type="password" defaultValue='' onChange={this.handleChange2}/></p>
+                        <p><input type="password" onChange={this.handleChange2}/></p>
                         <a class="btn btn-success" onClick={this.handleSubmit}>Sign up</a>
                     </form>
                 </div>
