@@ -239,7 +239,7 @@ export default class Problems extends React.Component {
 
         let noProblemMessage;
         if (this.state.Problems.length == 0) {
-            
+
             noProblemMessage = <h1> No problems to display </h1>;
         }
 
